@@ -1,3 +1,4 @@
+import 'package:easyauto2/shared/auth/auth_controller.dart';
 import 'package:easyauto2/shared/themes/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:easyauto2/shared/themes/app_colors.dart';
@@ -7,6 +8,8 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = AuthController();
+    authController.currentUser(context);
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: Center(

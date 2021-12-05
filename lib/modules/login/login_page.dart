@@ -1,3 +1,4 @@
+import 'package:easyauto2/modules/login/login_controller.dart';
 import 'package:easyauto2/shared/themes/app_colors.dart';
 import 'package:easyauto2/shared/themes/app_images.dart';
 import 'package:easyauto2/shared/themes/app_text_styles.dart';
@@ -13,6 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final controller = LoginController();
   @override
   Widget build(BuildContext context) {
     final size =
@@ -58,18 +60,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: SignInButton(
                       Buttons.Google,
                       text: "   Entrar com Google",
-                      onPressed: () async {
-                        GoogleSignIn _googleSignIn = GoogleSignIn(
-                          scopes: [
-                            'email',
-                          ],
-                        );
-                        try {
-                          final response = await _googleSignIn.signIn();
-                          print(response);
-                        } catch (error) {
-                          print(error);
-                        }
+                      onPressed: () {
+                        controller.googleSignIn(context);
                       },
                     ),
                   ),
