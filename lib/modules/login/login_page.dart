@@ -1,9 +1,9 @@
 import 'package:easyauto2/shared/themes/app_colors.dart';
 import 'package:easyauto2/shared/themes/app_images.dart';
 import 'package:easyauto2/shared/themes/app_text_styles.dart';
-import 'package:easyauto2/shared/widgets/social_login/social_login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -58,7 +58,19 @@ class _LoginPageState extends State<LoginPage> {
                     child: SignInButton(
                       Buttons.Google,
                       text: "   Entrar com Google",
-                      onPressed: () {},
+                      onPressed: () async {
+                        GoogleSignIn _googleSignIn = GoogleSignIn(
+                          scopes: [
+                            'email',
+                          ],
+                        );
+                        try {
+                          final response = await _googleSignIn.signIn();
+                          print(response);
+                        } catch (error) {
+                          print(error);
+                        }
+                      },
                     ),
                   ),
                 ],
